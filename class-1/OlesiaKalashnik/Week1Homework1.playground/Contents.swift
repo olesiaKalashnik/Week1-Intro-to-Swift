@@ -28,7 +28,25 @@ func countCharactersInString(string: String) -> String {
 }
 
 //Write a function that takes in a string and reverses it.
-func reverseString(string: String) -> String {
+func reverseStringWithStride(string: String) -> String {
+    var reversedString = ""
+    for index in (string.characters.count-1).stride(to: -1, by: -1) {
+        reversedString.append(string[string.startIndex.advancedBy(index)])
+    }
+    return reversedString
+}
+
+func reverseStringWithWhile(string: String) -> String {
+    var reversedString = ""
+    var index = string.endIndex
+    while index > string.startIndex {
+        index = index.predecessor()
+        reversedString.append(string[index])
+    }
+    return reversedString
+}
+
+func reverseStringWithArray(string: String) -> String {
     var stringAsArray = string.characters.map {$0}
     
     let stringLength = stringAsArray.count
@@ -43,5 +61,4 @@ func reverseString(string: String) -> String {
 }
 
 //Declare a variable that’s function. Implement function to take in a string (name) and return greeting message.
-var greetingMessage : (String) -> String = { (name) in return "Hello, \(name)!" }
-
+let greetingMessage : (String) -> String = { (name) in return "Hello, \(name)!" }
